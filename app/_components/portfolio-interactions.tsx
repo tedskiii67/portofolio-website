@@ -64,7 +64,7 @@ function DetailDialog({ item, onClose }: { item: Project | Article | null; onClo
   const isProject = "stack" in item;
 
   return (
-    <dialog ref={dialogRef} className="detail-dialog" aria-labelledby={`detail-${item.id}`} onClose={onClose} onClick={(event) => {
+    <dialog ref={dialogRef} className="detail-dialog" aria-labelledby={`detail-${item.id}`} onClose={(event) => { if (!event.currentTarget.open) onClose(); }} onClick={(event) => {
       if (event.target === event.currentTarget) {
         const bounds = event.currentTarget.getBoundingClientRect();
         if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) event.currentTarget.close();
@@ -108,10 +108,10 @@ export function ProjectCollection() {
             <ProjectVisual project={project} />
             <div className="project-copy">
               <div className="project-category"><span>{project.categories.join(" · ")}</span><span>{project.year}</span></div>
-              <div className="project-title"><h3>{project.title}</h3><span className="circle-arrow"><Icon name="arrow" /></span></div>
-              <p>{project.summary}</p>
+              <div className="project-title"><h3>{project.title}</h3></div>
+              <p className="project-summary">{project.summary}</p>
+              <span className="project-read-more">Read more <Icon name="arrow" /></span>
               <div className="tags">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div>
-              <span className="project-action">Explore project <Icon name="arrow" /></span>
             </div>
           </button>
         ))}
