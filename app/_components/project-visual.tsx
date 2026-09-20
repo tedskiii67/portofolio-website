@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { Project } from "../content";
-import { CategoryCover } from "./category-cover";
+import { ProjectCover } from "./project-cover";
 
 export function ProjectVisual({ project }: { project: Project }) {
   if (project.image) {
@@ -11,5 +11,5 @@ export function ProjectVisual({ project }: { project: Project }) {
     );
   }
 
-  return <CategoryCover project={project} />;
+  return <ProjectCover project={project} />;
 }

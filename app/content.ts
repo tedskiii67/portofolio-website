@@ -1,7 +1,7 @@
 export type Project = {
   id: string;
   title: string;
-  category: string;
+  categories: string[];
   year: string;
   summary: string;
   stack: string[];
@@ -30,11 +30,12 @@ export type Article = {
 // Role-specific CVs confirm graduate status; older projects remain from the live portfolio.
 // Sample articles are illustrative placeholders, not published case studies.
 export const portfolio = {
+  "showWriting": false,
   "name": "Theodore Kasyfillah",
   "initials": "TK",
   "role": "Product Designer & Digital Builder",
   "email": "theodorekasyfillah06@gmail.com",
-  "avatar": "/imported-portfolio/portrait.jpg",
+  "avatar": "/selpool.jpeg",
   "hero": {
     "greeting": "Hello, I'm Theo",
     "lineOne": "I do design, research, and also code sometimes",
@@ -44,8 +45,7 @@ export const portfolio = {
   },
   "about": {
     "heading": "About Theo",
-    "description": "Hi! I'm Theodore Kasyfillah—feel free to call me Theo. I'm an Information Systems graduate from Universitas Indonesia with experience in product design, UX research, and product thinking. Alongside client design work, I've explored data analysis and full-stack development through university group projects. I enjoy understanding problems, collaborating across disciplines, and turning insights into useful digital experiences.",
-    "note": "Great design is born of simplicity and clarity."
+    "description": "Hi! I'm Theodore Kasyfillah—feel free to call me Theo. I'm an Information Systems graduate from Universitas Indonesia with experience in product design, UX research, and product thinking. Alongside client design work, I've explored data analysis and full-stack development through university group projects. I enjoy understanding problems, collaborating across disciplines, and turning insights into useful digital experiences."
   },
   "education": {
     "degree": "Information Systems Graduate",
@@ -74,6 +74,7 @@ export const portfolio = {
   "experience": [
     {
       "id": "xlsmart",
+      "startDate": "2026-04",
       "logo": "/logos/xlsmart.png",
       "initials": "XL",
       "company": "XLSMART",
@@ -89,6 +90,7 @@ export const portfolio = {
     },
     {
       "id": "freelance",
+      "startDate": "2024-03",
       "logo": "",
       "initials": "FR",
       "company": "Independent",
@@ -104,6 +106,7 @@ export const portfolio = {
     },
     {
       "id": "180dc",
+      "startDate": "2025-06",
       "logo": "/logos/180dc.png",
       "initials": "180",
       "company": "180 DC Consulting UI",
@@ -119,6 +122,7 @@ export const portfolio = {
     },
     {
       "id": "experience-1",
+      "startDate": "2024-03",
       "logo": "/logos/ristek.png",
       "initials": "RI",
       "company": "Ristek Fasilkom UI",
@@ -135,6 +139,7 @@ export const portfolio = {
     },
     {
       "id": "experience-2",
+      "startDate": "2023-11",
       "logo": "/logos/compfest.jpg",
       "initials": "CF",
       "company": "COMPFEST 16",
@@ -150,6 +155,7 @@ export const portfolio = {
     },
     {
       "id": "experience-4",
+      "startDate": "2023-08",
       "logo": "/logos/open-house.png",
       "initials": "OH",
       "company": "Open House Fasilkom UI 2023",
@@ -166,6 +172,7 @@ export const portfolio = {
     },
     {
       "id": "experience-5",
+      "startDate": "2023-05",
       "logo": "/logos/bem.jpg",
       "initials": "BE",
       "company": "BEM Fasilkom UI",
@@ -181,42 +188,40 @@ export const portfolio = {
     {
       "id": "wattwallet",
       "title": "WattWallet",
-      "category": "UX Research",
+      "categories": ["UX Research", "UI Design"],
       "year": "2025",
-      "summary": "A gamified energy-saving and donation app that earned Runner-up at the Portal 7 UI/UX Design Competition.",
+      "summary": "Watt Wallet is a gamified energy-saving and donation app designed to encourage users to adopt more sustainable daily habits while contributing to social causes. Developed using the Design Thinking framework, the project involved user research to identify key pain points and shape a user-centered experience that combines energy conservation, gamification, and donation features. The project was awarded Runner-up at the Portal 7 UI/UX Design Competition in October 2025.",
       "stack": [
         "User Research",
         "Design Thinking",
         "UI/UX Design"
       ],
       "details": [
-        "Aug – Oct 2025. Conducted user research using the Design Thinking framework to define pain points and shape a user-centered energy-saving and donation experience.",
-        "Awarded Runner-up at the Portal 7 UI/UX Design Competition in October 2025."
+        "This project is a gamified energy-saving and donation app designed to encourage users to adopt more sustainable daily habits while contributing to social causes. Developed using the Design Thinking framework, the project involved user research to identify key pain points and shape a user-centered experience that combines energy conservation, gamification, and donation features. The project was awarded Runner-up at the Portal 7 UI/UX Design Competition in October 2025."
       ],
-      "visual": "summary"
+      "visual": "summary",
+      "liveUrl": "https://drive.google.com/file/d/1D_TyAbVuzG9qsxKzFCpsObtFjZRbyRBE/view?usp=sharing"
     },
     {
       "id": "ux-audit-180dc",
       "title": "UX Audit · 180 DC Consulting UI",
-      "category": "UX Research",
+      "categories": ["UX Research"],
       "year": "2025",
-      "summary": "An application audit translating user behavior and flow analysis into actionable product recommendations.",
+      "summary": "I joined this project as an External Project Analyst to audit a client application. My team and I analyzed user behavior data and application flows to uncover usage patterns, pain points, and improvement opportunities, then translated our findings into actionable UX and product recommendations.",
       "stack": [
         "UX Audit",
         "User-flow Analysis",
         "Research Synthesis"
       ],
       "details": [
-        "Jun – Aug 2025. Recruited as an External Project Analyst to audit a client application.",
-        "Analyzed user behavior data and application flows to identify usage patterns, pain points, and product improvement opportunities.",
-        "Collaborated with a remote project team to synthesize findings into actionable UX recommendations."
+        "I joined this project as an External Project Analyst to audit a client application. My team and I analyzed user behavior data and application flows to uncover usage patterns, pain points, and improvement opportunities, then translated our findings into actionable UX and product recommendations."
       ],
       "visual": "summary"
     },
     {
       "id": "project-1",
       "title": "Open House Fasilkom UI 2023",
-      "category": "UI Design",
+      "categories": ["UI Design", "UX Research"],
       "year": "",
       "summary": "Designed the Home Registration Page for Open House Fasilkom UI 2023, featuring a countdown, event details, benefits, FAQs, and contact access for a seamless attendee experience.",
       "stack": [
@@ -233,7 +238,7 @@ export const portfolio = {
     {
       "id": "project-2",
       "title": "Pemira Fasilkom UI 2023 Website",
-      "category": "UI Design",
+      "categories": ["UI Design"],
       "year": "",
       "summary": "Designed the Landing Page, Candidate Overview, and E-Voting pages for Pemira Fasilkom UI 2023, ensuring an intuitive experience with clear information, smooth navigation, and secure voting functionality.",
       "stack": [
@@ -249,7 +254,7 @@ export const portfolio = {
     {
       "id": "project-3",
       "title": "SIBeasiswa NG",
-      "category": "UX Research",
+      "categories": ["UX Research", "UI Design"],
       "year": "",
       "summary": "Designed a user-friendly scholarship website and CMS as part of open recruitment for Ristek Fasilkom Ul's Digital Product Design SIG. The platform simplifies scholarship discovery, application management, and document submission for students, while offering efficient admin tools for managing and reviewing submissions.",
       "stack": [
@@ -266,7 +271,7 @@ export const portfolio = {
     {
       "id": "project-4",
       "title": "The 47th Jazz Goes to Campus Website",
-      "category": "UI Design",
+      "categories": ["UI Design"],
       "year": "",
       "summary": "Designed for The 47th Jazz Goes to Campus Website, the Homepage introduces the event, the Gallery showcases photos and highlights, the About Us section tell the history of the event, and the Band Registration page offers a streamlined registration process for band contest participant.",
       "stack": [
@@ -282,7 +287,7 @@ export const portfolio = {
     {
       "id": "project-5",
       "title": "RISTEK Summer Event Website Revamp",
-      "category": "UI Design",
+      "categories": ["UI Design"],
       "year": "",
       "summary": "Worked on a small revamp for RISTEK Summer Event 2024 website, including adjustments to the landing page and event page for improved clarity and visual flow. Added dynamic forms to streamline the registration process, making it more seamless and interactive for participants.",
       "stack": [
@@ -298,7 +303,7 @@ export const portfolio = {
     {
       "id": "project-6",
       "title": "InteractEd: Redefining Early Education!",
-      "category": "UX Research",
+      "categories": ["UX Research", "UI Design"],
       "year": "",
       "summary": "My group and I designed InteractEd for HCI course final project, InteractEd is an interactive learning platform for kids aged 6–13. It uses project-based learning to help children develop skills, explore interests, and collaborate with peers in a fun and engaging way.",
       "stack": [
@@ -315,7 +320,7 @@ export const portfolio = {
     {
       "id": "project-7",
       "title": "Healthcare Mobile App",
-      "category": "UI Design",
+      "categories": ["UI Design"],
       "year": "",
       "summary": "Designed for an e-health application as a contract project during my time as a Digital Product Design member at Ristek Fasilkom UI, the app includes features like surveys, e-learning, document management, and consultation. It provides users with a seamless and user-friendly experience, enabling easy access to health resources and efficient interaction with healthcare providers.",
       "stack": [
@@ -331,7 +336,7 @@ export const portfolio = {
     {
       "id": "project-8",
       "title": "Football Super App",
-      "category": "UI Design",
+      "categories": ["UI Design"],
       "year": "",
       "summary": "Designed a football application as a contract project during my time as a Digital Product Design member at Ristek Fasilkom UI featuring news, standings, player and coach details, match results, and schedules. The app delivers a comprehensive and user-friendly experience, keeping fans informed and engaged with their favorite teams and competitions.",
       "stack": [
@@ -347,7 +352,7 @@ export const portfolio = {
     {
       "id": "project-9",
       "title": "Tax Centre UI Website",
-      "category": "UI Design",
+      "categories": ["UI Design"],
       "year": "2024–2025",
       "summary": "Designed the official Tax Centre UI website across two project phases, translating user insights into a clean, responsive interface.",
       "stack": [
@@ -366,7 +371,7 @@ export const portfolio = {
     {
       "id": "project-10",
       "title": "Cari.in: Competition & Team Finder",
-      "category": "Product Strategy",
+      "categories": ["Product Strategy"],
       "year": "2025",
       "summary": "Cari.in is an innovative digital platform designed to help Indonesian university students discover competition opportunities, form teams, develop practical skills, and build digital portfolios tailored to current and future industry demands.\n This project was presented in a business plan competition, where we successfully ranked in the Top 5 finalists.",
       "stack": [
@@ -386,7 +391,7 @@ export const portfolio = {
     {
       "id": "project-11",
       "title": "Artera: New Hope For Digital Artist",
-      "category": "Product Strategy",
+      "categories": ["Product Strategy"],
       "year": "",
       "summary": "Artera is a digital platform developed to support and empower Indonesian illustrators and digital artists through a fair, transparent system focused on copyright protection.\nThe platform offers features for showcasing and selling artworks, global market access, fair pricing guidelines, and a supportive, educational community.",
       "stack": [
@@ -403,9 +408,9 @@ export const portfolio = {
     {
       "id": "movie-sentiment",
       "title": "Movie Audience Sentiment Analysis",
-      "category": "Data",
+      "categories": ["Data"],
       "year": "2025",
-      "summary": "A university group study comparing audience sentiment around Man of Steel and Superman using 24,000 YouTube comments.",
+      "summary": "My group and I explored how audiences responded to Zack Snyder’s Man of Steel (2013) and James Gunn’s Superman (2025) through 24,000 comments from eight YouTube videos. Using sentiment analysis and text mining, we compared audience reactions across release phases and examined recurring topics to understand how viewers discussed the two interpretations of Superman.",
       "stack": [
         "Sentiment Analysis",
         "VADER",
@@ -413,17 +418,17 @@ export const portfolio = {
         "YouTube Data API"
       ],
       "details": [
-        "Sep – Dec 2025. Contributed to a comparative team study using 24,000 comments from eight YouTube videos collected through YouTube Data API v3.",
-        "The team combined text preprocessing, VADER, N-grams, and TF-IDF to compare sentiment, release-phase trends, and recurring audience topics."
+        "Sep – Dec 2025. Contributed to a university group study comparing audience sentiment toward Man of Steel (2013), directed by Zack Snyder, and Superman (2025), directed by James Gunn. The team collected 24,000 comments from eight YouTube videos through YouTube Data API v3.",
+        "Combined text preprocessing and VADER sentiment analysis to explore audience reactions across release phases. N-grams and TF-IDF helped the team examine recurring words and topics, adding context to the sentiment comparison."
       ],
       "visual": "summary"
     },
     {
       "id": "ufc-analysis",
       "title": "UFC Event Data Analysis",
-      "category": "Data",
+      "categories": ["Data"],
       "year": "2025",
-      "summary": "A university team analysis of fighter statistics, match outcomes, and event data.",
+      "summary": "My group and I analyzed UFC fighter statistics, match outcomes, and event data as part of a university project. Through exploratory visualizations, statistical testing, and comparisons of classification, regression, and clustering models, we investigated patterns in the data and explored how different analytical approaches could help us understand fighters and their match results.",
       "stack": [
         "Exploratory Data Analysis",
         "Statistical Testing",
@@ -438,34 +443,34 @@ export const portfolio = {
     {
       "id": "site-management",
       "title": "Site Management System",
-      "category": "Software Development",
+      "categories": ["Software Development"],
       "year": "2025",
-      "summary": "Full-stack development for a university group project using Next.js and Go.",
+      "summary": "Worked with a university project team to develop a Site Management System, contributing to both the frontend and backend. I built interfaces using Next.js and implemented backend functionality in Go, gaining hands-on experience working across the two layers of a web application.",
       "stack": [
         "Next.js",
         "Go",
         "Full-Stack Development"
       ],
       "details": [
-        "Jan – Jun 2025. Developed Next.js frontend interfaces as part of a university project team.",
-        "Implemented backend functionality using Go, contributing across both frontend and backend."
+        "Jan – Jun 2025. Contributed to the development of a Site Management System as part of a university project team, with responsibilities spanning frontend interfaces and backend functionality.",
+        "Built frontend interfaces using Next.js and implemented backend functionality in Go. My contribution covered both layers of the application rather than focusing solely on interface design."
       ],
       "visual": "summary"
     },
     {
       "id": "apapmedika",
       "title": "APAPMedika",
-      "category": "Software Development",
+      "categories": ["Software Development"],
       "year": "2024",
-      "summary": "Full-stack development of an insurance subfeature in a university healthcare application project.",
+      "summary": "Developed the insurance subfeature for APAPMedika, a healthcare application built as a university group project. I created the frontend interfaces using Vue.js and implemented the supporting backend functionality with Spring Boot, contributing to the insurance module across both the user-facing and server-side layers.",
       "stack": [
         "Vue.js",
         "Spring Boot",
         "Full-Stack Development"
       ],
       "details": [
-        "Oct – Dec 2024. Built Vue.js interfaces for the insurance subfeature in a university group project.",
-        "Implemented backend functionality for the insurance subfeature using Spring Boot."
+        "Oct – Dec 2024. Worked on the insurance subfeature within APAPMedika, a healthcare application developed collaboratively as a university project. My implementation scope focused on the insurance module, not the entire application.",
+        "Built the module’s frontend interfaces in Vue.js and implemented its backend functionality using Spring Boot, contributing to both the user-facing experience and the server-side implementation."
       ],
       "visual": "summary"
     }
@@ -514,7 +519,8 @@ export const portfolio = {
       ]
     }
   ] as Article[],
-  "skills": [
+  "skills": {
+    "hard": [
     "UI/UX Design",
     "Figma",
     "Wireframing",
@@ -531,17 +537,9 @@ export const portfolio = {
     "Flutter",
     "Adobe Premiere Pro",
     "Vue.js",
-    "Communication",
-    "Teamwork",
-    "Problem Solving",
-    "Leadership",
-    "Creativity & Innovation",
-    "Organizational Culture",
     "Event Organizing",
     "Human Capital Management",
-    "Managerial",
     "Marketing",
-    "Team Leadership",
     "UI Design",
     "Interactive Prototyping",
     "User-flow Analysis",
@@ -562,10 +560,21 @@ export const portfolio = {
     "Research Synthesis",
     "Go",
     "Spring Boot",
-    "Django",
+    "Django"
+    ],
+    "soft": [
+    "Communication",
+    "Teamwork",
+    "Problem Solving",
+    "Leadership",
+    "Creativity & Innovation",
+    "Organizational Culture",
+    "Managerial",
+    "Team Leadership",
     "Team Management",
     "Cross-team Collaboration"
-  ],
+    ]
+  },
   "contact": {
     "heading": "Let's Connect",
     "accent": "",

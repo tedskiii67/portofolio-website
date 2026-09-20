@@ -16,6 +16,10 @@ function SectionHeading({ title, description }: { title: string; description: st
 }
 
 export default function Home() {
+  const chronologicalExperience = [...portfolio.experience].sort((a, b) =>
+    b.startDate.localeCompare(a.startDate)
+  );
+
   return (
     <>
       <a className="skip-link" href="#main">Skip to content</a>
@@ -50,11 +54,9 @@ export default function Home() {
                   ) : (
                     <div className="hero-prism" aria-hidden="true"><i /><i /><i /></div>
                   )}
-                  <span className="hero-art-mark" aria-hidden="true">{portfolio.initials}</span>
                 </div>
                 <figcaption className="hero-card-caption">
                   <div><strong>{portfolio.name}</strong><span>{portfolio.role}</span></div>
-                  <span className="foil-seal" aria-hidden="true">✦</span>
                 </figcaption>
               </figure>
               </HangingBadge>
@@ -70,10 +72,8 @@ export default function Home() {
                 {portfolio.avatar ? <Image src={portfolio.avatar} alt={portfolio.name} fill sizes="64px" /> : <span>{portfolio.initials}</span>}
               </div>
               <div><h2>{portfolio.about.heading}</h2><p>{portfolio.role}</p></div>
-              <Icon name="spark" />
             </div>
             <p className="profile-description">{portfolio.about.description}</p>
-            <div className="profile-location"><Icon name="spark" /><span>{portfolio.about.note}</span></div>
           </article>
           <article className="glass education-card">
             <h2>Education</h2>
@@ -93,11 +93,19 @@ export default function Home() {
         >
           <div className="section-heading">
             <h2 id="experience-title">Experience</h2>
+            <p>A few stops along the way, and the things I’m building now.</p>
           </div>
 
           <div className="experience-list">
-            {portfolio.experience.map((experience) => (
-              <article className="experience-item" key={experience.id}>
+            {chronologicalExperience.map((experience, index) => (
+              <article className="experience-item" data-current={experience.current} key={experience.id}>
+                {index < chronologicalExperience.length - 1 && (
+                  <svg className="journey-route" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true">
+                    <path className="journey-road" d={index % 2 === 0 ? "M160 0 C160 50 40 50 40 100" : "M40 0 C40 50 160 50 160 100"} />
+                    <path className="journey-dashes" d={index % 2 === 0 ? "M160 0 C160 50 40 50 40 100" : "M40 0 C40 50 160 50 160 100"} />
+                  </svg>
+                )}
+                <span className="journey-year" aria-hidden="true">{experience.period.match(/\d{4}/)?.[0]}</span>
                 <div className="glass company-icon">
                   {experience.logo ? (
                     <Image
@@ -164,7 +172,7 @@ export default function Home() {
           <ProjectCollection />
         </section>
 
-        {portfolio.writing.length > 0 && <section className="section-space" id="writing" aria-label="Writing and notes">
+        {portfolio.showWriting && portfolio.writing.length > 0 && <section className="section-space" id="writing" aria-label="Writing and notes">
           <SectionHeading title="A few things on my mind." description="Notes on design, development, and the things learned in between." />
           <ArticleCollection />
         </section>}

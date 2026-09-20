@@ -1,5 +1,15 @@
 # Experience logo sources
 
+- UFC project cover: https://commons.wikimedia.org/wiki/File:UFC_Logo.svg — UFC logo, original source UFC.com; stored as `ufc.svg`. Trademark belongs to UFC. Used to identify the subject of an independent university data-analysis project, not an affiliation.
+
+## Project logo supplied by Theo
+
+- WattWallet: `wattwallet.jpg`, copied from the user-provided `logo ww.jpg`. Original retained. The cover uses the color enhanced version `wattwallet-enhanced.png` (2170 × 725), created with built-in imagegen.
+
+Enhancement prompt:
+
+> Edit target: supplied Watt Wallet logo. Enhance resolution and sharpness only, faithfully preserving the exact existing design. Output a high-resolution clean horizontal logo on pure white background. Preserve cyan rounded-square icon with blue wallet and yellow lightning bolt, blue 'Watt Wallet' wordmark and yellow 'Empowering Change Together' tagline, exact spelling, relative positioning, proportions, typeface and original colors. Remove JPEG blur and artifacts, crisp smooth edges and legible text. No redesign, no additional text, no decorations, no monochrome. Keep tight horizontal composition and minimal white margins like original. Intended for website logo asset.
+
 Original assets are stored locally. Logos and trademarks belong to their respective organizations.
 
 - XLSMART: official website header, https://www.xlsmart.co.id/id/tentang-xlsmart/media

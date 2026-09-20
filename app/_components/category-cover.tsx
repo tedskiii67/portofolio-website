@@ -11,7 +11,7 @@ const themes: Record<string, { kind: string; color: string; word: string }> = {
 
 export function CategoryCover({ project }: { project: Project }) {
   const id = useId();
-  const theme = themes[project.category] ?? themes["UI Design"];
+  const theme = themes[project.categories[0]] ?? themes["UI Design"];
   const variant = [...project.id].reduce((sum, char) => sum + char.charCodeAt(0), 0) % 3;
   return (
     <div className="project-visual category-cover" data-kind={theme.kind} aria-hidden="true">

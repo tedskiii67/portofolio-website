@@ -11,7 +11,7 @@ const sections = [
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
   { id: "work", label: "Work" },
-  ...(portfolio.writing.length ? [{ id: "writing", label: "Writing" }] : []),
+  ...(portfolio.showWriting && portfolio.writing.length ? [{ id: "writing", label: "Writing" }] : []),
 ];
 
 export function Navigation() {
@@ -39,7 +39,7 @@ export function Navigation() {
             <a key={id} href={`#${id}`} aria-current={active === id ? "location" : undefined}>{label}</a>
           ))}
         </div>
-        <a className="nav-contact" href="#contact">Let’s talk <Icon name="arrow" /></a>
+        <a className="nav-contact" href="#contact">Let’s talk <Icon name="chat" /></a>
       </nav>
     </header>
   );
@@ -73,7 +73,7 @@ function DetailDialog({ item, onClose }: { item: Project | Article | null; onClo
       <button className="dialog-close icon-button" aria-label="Close details" onClick={() => dialogRef.current?.close()} autoFocus><Icon name="close" /></button>
       {isProject && <ProjectVisual project={item} />}
       <div className="dialog-copy">
-        <p className="eyebrow">{item.category} <span>·</span> {isProject ? item.year : item.readTime}</p>
+        <p className="eyebrow">{isProject ? item.categories.join(" · ") : item.category} <span>·</span> {isProject ? item.year : item.readTime}</p>
         <h2 id={`detail-${item.id}`}>{item.title}</h2>
         <p className="dialog-summary">{item.summary}</p>
         {(isProject ? item.details : item.body).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
@@ -91,8 +91,8 @@ function DetailDialog({ item, onClose }: { item: Project | Article | null; onClo
 export function ProjectCollection() {
   const [category, setCategory] = useState("All");
   const [selected, setSelected] = useState<Project | null>(null);
-  const categories = ["All", ...new Set(portfolio.projects.map((project) => project.category))];
-  const projects = portfolio.projects.filter((project) => category === "All" || project.category === category);
+  const categories = ["All", ...new Set(portfolio.projects.flatMap((project) => project.categories))];
+  const projects = portfolio.projects.filter((project) => category === "All" || project.categories.includes(category));
 
   return (
     <>
@@ -107,7 +107,7 @@ export function ProjectCollection() {
           <button className="glass project-card" key={project.id} onClick={() => setSelected(project)} aria-label={`View ${project.title} project`}>
             <ProjectVisual project={project} />
             <div className="project-copy">
-              <div className="project-category"><span>{project.category}</span><span>{project.year}</span></div>
+              <div className="project-category"><span>{project.categories.join(" · ")}</span><span>{project.year}</span></div>
               <div className="project-title"><h3>{project.title}</h3><span className="circle-arrow"><Icon name="arrow" /></span></div>
               <p>{project.summary}</p>
               <div className="tags">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div>
