@@ -46,7 +46,14 @@ export default function Home() {
             </div>
 
             <div className="hero-showcase">
-              <HangingBadge>
+              <HangingBadge back={
+                <div className="badge-back-content">
+                  <div className="badge-back-top"><span>THE OTHER SIDE</span></div>
+                  <strong className="badge-back-monogram" aria-hidden="true">{portfolio.initials}</strong>
+                  <div className="badge-back-intro"><strong>Still Theo.</strong><p>Curious about how people works.<br />Love to create something.</p></div>
+                  <div className="badge-back-bottom"><span>If you found this, say hello here.</span><span>{portfolio.email}</span><div className="badge-barcode" aria-hidden="true" /></div>
+                </div>
+              }>
               <figure className="glass hero-collectible">
                 <div className="hero-collectible-art">
                   {portfolio.avatar ? (

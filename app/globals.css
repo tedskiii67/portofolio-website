@@ -188,6 +188,50 @@ button svg, a svg { vertical-align: middle; }
 .lanyard-card[data-dragging] { cursor: grabbing; }
 .lanyard-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 7px; }
 .lanyard-card img { pointer-events: none; -webkit-user-drag: none; }
+.lanyard-card { perspective: 1100px; }
+.badge-flip-stage { position: relative; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.22,.75,.25,1); }
+.badge-flip-stage[data-flipped="true"] { transform: rotateY(180deg); }
+.badge-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.badge-face-front { position: relative; transform: rotateY(0deg); }
+.badge-face-back { position: absolute; inset: 0; transform: rotateY(180deg); border-radius: 21px; background-color: #14111d; padding: clamp(16px, 2.5vw, 28px); overflow: hidden; }
+.badge-back-content { display: flex; flex-direction: column; height: 100%; color: #ede8f5; }
+.badge-back-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 8px; letter-spacing: .18em; color: #b7a5d0; }
+.badge-back-top svg { width: 15px; height: 15px; }
+.badge-back-monogram { font-size: clamp(48px, 7vw, 88px); line-height: 1.1; letter-spacing: -.1em; margin-block: auto; color: #dbc9f2; text-shadow: 2px 2px #77c6bf33, -2px -1px #d2a7cc33; }
+.badge-back-intro strong { font-size: 22px; letter-spacing: -.035em; }
+.badge-back-intro p { margin-top: 5px; font-size: 12px; line-height: 1.55; color: #bfb4cf; }
+.badge-back-disciplines { display: flex; flex-wrap: wrap; gap: 6px; margin-block: 14px; }
+.badge-back-disciplines span { font-size: 9px; padding: 3px 7px; border: 1px solid #d2b8f12b; border-radius: 5px; background: #ffffff05; }
+.badge-back-bottom { display: grid; gap: 5px; margin-top: auto; padding-top: 12px; border-top: 1px solid #ffffff16; }
+.badge-back-bottom > span:first-child { font-size: 10px; color: #d7c3ec; }
+.badge-back-bottom > span:nth-child(2) { font-size: 9px; overflow-wrap: anywhere; color: #a99bb9; }
+.badge-barcode { width: 68%; height: 16px; margin-top: 4px; opacity: .3; background: repeating-linear-gradient(90deg, #d8c6ef 0 2px, transparent 2px 5px, #d8c6ef 5px 6px, transparent 6px 9px, #d8c6ef 9px 13px, transparent 13px 16px); }
+.badge-examine { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px auto 0; min-height: 44px; padding: 8px 14px; border: 1px solid #d8c3ef25; border-radius: 30px; color: #c9b9db; font-size: 11px; background: #100b19a6; }
+.badge-examine:hover { color: #fff; border-color: #d8c3ef66; }
+.inspect-card { position: relative; perspective: 1100px; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; border-radius: 21px; }
+.inspect-card[data-dragging] { cursor: grabbing; }
+.inspect-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 8px; }
+.inspect-stage { transition: none; transform-origin: 50% 0; }
+.inspect-stage > .badge-face { pointer-events: none; }
+.inspect-stage .hero-collectible { transform: none; padding-top: 24px; }
+.inspect-stage .glass { --foil-x: inherit; --foil-y: inherit; }
+.badge-controls { position: relative; z-index: 2; display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+.badge-controls .badge-examine { margin: 0; }
+.badge-gesture-hint { text-align: center; color: #a99aba; font-size: 10px; margin-top: 10px; }
+@media (max-width: 700px) {
+  .badge-face-back { padding: 16px; border-radius: 16px; }
+  .badge-back-top { font-size: 6px; }
+  .badge-back-monogram { font-size: 43px; }
+  .badge-back-intro strong { font-size: 18px; }
+  .badge-back-intro p { font-size: 10px; }
+  .badge-back-disciplines { gap: 4px; margin-block: 8px; }
+  .badge-back-disciplines span { font-size: 8px; padding: 2px 5px; }
+  .badge-back-bottom { padding-top: 8px; gap: 3px; }
+  .badge-back-bottom > span:first-child { font-size: 9px; }
+  .badge-back-bottom > span:nth-child(2) { font-size: 8px; }
+  .badge-barcode { height: 10px; }
+  .badge-examine { margin-top: 8px; }
+}
 .lanyard-card .hero-collectible { transform: none; padding-top: 24px; box-shadow: inset 0 2px 1px #ffffff38, inset -1px -3px 3px #00000038, 0 25px 50px #0006; }
 .lanyard-clip { position: absolute; z-index: 5; left: calc(50% - 12px); top: -15px; width: 24px; height: 30px; border: 2px solid #c2c5cd88; border-radius: 6px; background: linear-gradient(100deg, #292931, #b9bac255 48%, #34343e); box-shadow: inset 1px 0 1px #ffffff50, 0 3px 6px #0006; pointer-events: none; }
 .hero-card-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 4px 4px 15px; color: #d6c4ed; font-size: 8px; letter-spacing: .13em; }
