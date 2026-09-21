@@ -77,7 +77,7 @@ export function HangingBadge({ children }: { children: ReactNode }) {
       const rect = scene.current.getBoundingClientRect();
       const height = Math.max(1, rect.top + window.scrollY);
       const mobile = window.innerWidth <= 700;
-      const start = mobile ? rect.width + 12 : rect.width / 2;
+      const start = rect.width / 2;
       const restX = rect.width / 2 - start;
       const length = Math.hypot(restX, height);
       const rest = Math.atan2(restX, height);

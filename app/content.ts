@@ -37,7 +37,7 @@ export const portfolio = {
   "email": "theodorekasyfillah06@gmail.com",
   "avatar": "/selpool.jpeg",
   "hero": {
-    "greeting": "Hello, I'm Theo",
+    "greeting": "Hello,\nI'm Theo",
     "lineOne": "I do design, research, and also code sometimes",
     "lineTwo": "",
     "description": "Hi!! I’m Theo, an Information Systems graduate. I do design, research, and also code sometimes. I enjoy connecting user needs, business goals, and technology to create experiences that actually useful for a lot of people.",
