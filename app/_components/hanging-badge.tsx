@@ -222,10 +222,10 @@ export function HangingBadge({ children, back }: { children: ReactNode; back: Re
         </div>
         </div>
       </div>
-      <div className="badge-controls">
+      {/* <div className="badge-controls">
         <button type="button" className="badge-examine" onClick={flip}>Flip card <span aria-hidden="true">↻</span></button>
-        {/* <button type="button" className="badge-examine" onClick={reset}>Reset view</button> */}
-      </div>
+        <button type="button" className="badge-examine" onClick={reset}>Reset view</button>
+      </div> */}
     </div>
   );
 }
