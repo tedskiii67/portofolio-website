@@ -9,6 +9,8 @@ const MAX_TILT = 55;
 // A top-mounted swivel keeps the lanyard attached while the badge rotates with inertia.
 export function HangingBadge({ children, back }: { children: ReactNode; back: ReactNode }) {
   const stage = useRef<HTMLDivElement>(null);
+  const pendulum = useRef<HTMLDivElement>(null);
+  const swing = useRef({ offset: 0, velocity: 0, limit: 100 });
   const card = useRef<HTMLDivElement>(null);
   const cord = useRef<SVGSVGElement>(null);
   const cordPaths = useRef<(SVGPathElement | null)[]>([]);
@@ -28,12 +30,19 @@ export function HangingBadge({ children, back }: { children: ReactNode; back: Re
       stage.current.style.setProperty("--foil-y", `${50 + Math.sin(radians(m.x)) * 35}%`);
     }
     const { width, height } = anchor.current;
+    const s = swing.current;
+    const length = Math.max(height, 120);
+    const angle = Math.asin(clamp(s.offset / length, .6));
+    const lift = length * (Math.cos(angle) - 1);
+    if (pendulum.current) {
+      pendulum.current.style.transform = `translate(${s.offset}px, ${lift}px) rotate(${-angle * 180 / Math.PI}deg)`;
+    }
     const center = width / 2;
     const twist = Math.cos(radians(m.y));
     const bend = Math.sin(radians(m.y)) * 10;
     cordPaths.current.forEach((path, index) => {
       const offset = index === 0 ? -7 : 7;
-      path?.setAttribute("d", `M ${center + offset} 0 C ${center + offset} ${height * .45}, ${center + bend + offset * twist} ${height * .84}, ${center + offset * .35 * twist} ${height}`);
+      path?.setAttribute("d", `M ${center + offset} 0 C ${center + offset + s.offset * .4} ${(height + lift) * .45}, ${center + s.offset * .85 + bend + offset * twist} ${(height + lift) * .84}, ${center + s.offset + offset * .35 * twist} ${height + lift}`);
     });
     const isBack = Math.cos(radians(m.x)) * Math.cos(radians(m.y)) < 0;
     if (isBack !== backVisible.current) {
@@ -45,10 +54,12 @@ export function HangingBadge({ children, back }: { children: ReactNode; back: Re
   const animate = useCallback((target?: { x: number; y: number }) => {
     cancelAnimationFrame(frame.current);
     const m = motion.current;
+    const s = swing.current;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       if (target) { m.x = target.x; m.y = target.y; }
       else { m.x = 0; m.y = Math.round(m.y / 180) * 180; }
       m.vx = m.vy = 0;
+      s.offset = s.velocity = 0;
       draw();
       return;
     }
@@ -57,6 +68,11 @@ export function HangingBadge({ children, back }: { children: ReactNode; back: Re
     const tick = (now: number) => {
       const dt = Math.min((now - previous) / 1000, .032);
       previous = now;
+      // Damped pendulum: the tether pulls the badge back through the center.
+      s.velocity = (s.velocity - s.offset * 22 * dt) * Math.exp(-2.6 * dt);
+      const nextOffset = s.offset + s.velocity * dt;
+      s.offset = clamp(nextOffset, s.limit);
+      if (Math.abs(nextOffset) > s.limit) s.velocity *= -.25;
       if (target) {
         m.vx += (target.x - m.x) * 85 * dt;
         m.vy += (target.y - m.y) * 85 * dt;
@@ -75,10 +91,11 @@ export function HangingBadge({ children, back }: { children: ReactNode; back: Re
       m.y += m.vy * dt;
       draw();
       const distance = target ? Math.abs(target.x - m.x) + Math.abs(target.y - m.y) : Math.abs(m.x) + (restingYaw === null ? 180 : Math.abs(restingYaw - m.y));
-      if (Math.abs(m.vx) + Math.abs(m.vy) < .25 && distance < .1) {
+      if (Math.abs(m.vx) + Math.abs(m.vy) < .25 && distance < .1 && Math.abs(s.offset) + Math.abs(s.velocity) < .2) {
         if (target) { m.x = target.x; m.y = target.y; }
         else { m.x = 0; m.y = restingYaw ?? m.y; }
         m.vx = m.vy = 0;
+        s.offset = s.velocity = 0;
         draw();
         return;
       }
@@ -102,6 +119,7 @@ export function HangingBadge({ children, back }: { children: ReactNode; back: Re
     if (!pointer.current) return;
     if (cancelled || performance.now() - pointer.current.time > 100) {
       motion.current.vx = motion.current.vy = 0;
+      swing.current.velocity = 0;
     }
     pointer.current = null;
     setDragging(false);
@@ -114,6 +132,9 @@ export function HangingBadge({ children, back }: { children: ReactNode; back: Re
       const rect = card.current.getBoundingClientRect();
       const height = Math.max(1, rect.top + window.scrollY);
       anchor.current = { width: rect.width, height };
+      // Leave room for the rotated card, especially near mobile viewport edges.
+      swing.current.limit = Math.max(12, Math.min(110, (Math.min(rect.left, window.innerWidth - rect.right) - 12) * .55));
+      swing.current.offset = clamp(swing.current.offset, swing.current.limit);
       cord.current.style.top = `-${height}px`;
       cord.current.style.height = `${height}px`;
       cord.current.setAttribute("viewBox", `0 0 ${rect.width} ${height}`);
@@ -130,6 +151,7 @@ export function HangingBadge({ children, back }: { children: ReactNode; back: Re
       if (query.matches) {
         cancelAnimationFrame(frame.current);
         motion.current.vx = motion.current.vy = 0;
+        swing.current.offset = swing.current.velocity = 0;
         motion.current.x = 0;
         motion.current.y = Math.round(motion.current.y / 180) * 180;
         draw();
@@ -142,13 +164,14 @@ export function HangingBadge({ children, back }: { children: ReactNode; back: Re
   return (
     <div className="hero-scene inspect-scene">
       <div ref={card} className="inspect-card" role="button" tabIndex={0}
-        aria-label={`Theo’s 3D badge, ${flipped ? "back" : "front"} side. Drag to rotate freely. Arrow keys rotate, Enter flips, Escape resets.`}
+        aria-label={`Theo’s 3D badge, ${flipped ? "back" : "front"} side. Drag to swing and rotate. Arrow keys rotate, Enter flips, Escape resets.`}
         aria-pressed={flipped} data-dragging={dragging || undefined}
         onDragStart={event => event.preventDefault()}
         onPointerDown={event => {
           if (!event.isPrimary || event.button !== 0) return;
           cancelAnimationFrame(frame.current);
           motion.current.vx = motion.current.vy = 0;
+          swing.current.velocity = 0;
           pointer.current = { id: event.pointerId, x: event.clientX, y: event.clientY, time: performance.now() };
           setDragging(true);
           event.currentTarget.setPointerCapture(event.pointerId);
@@ -161,6 +184,9 @@ export function HangingBadge({ children, back }: { children: ReactNode; back: Re
           const dt = Math.max((now - p.time) / 1000, .008);
           const dx = (event.clientX - p.x) * .8;
           const dy = -(event.clientY - p.y) * .65;
+          const pull = (event.clientX - p.x) * .65;
+          swing.current.offset = clamp(swing.current.offset + pull, swing.current.limit);
+          swing.current.velocity = clamp(pull / dt, 600);
           motion.current.y += dx;
           motion.current.x = clamp(motion.current.x + dy, MAX_TILT);
           motion.current.vy = clamp(dx / dt, 480);
@@ -188,17 +214,18 @@ export function HangingBadge({ children, back }: { children: ReactNode; back: Re
         <svg ref={cord} className="lanyard-cord" aria-hidden="true" preserveAspectRatio="none">
           {[0, 1].map(index => <path key={index} ref={node => { cordPaths.current[index] = node; }} />)}
         </svg>
+        <div ref={pendulum} className="badge-pendulum" style={{ position: "relative", transformOrigin: "50% 0", perspective: "1100px" }}>
         <span className="lanyard-clip" aria-hidden="true" />
         <div ref={stage} className="badge-flip-stage inspect-stage">
           <div className="badge-face badge-face-front" aria-hidden={flipped} inert={flipped}>{children}</div>
           <div className="badge-face badge-face-back glass" aria-hidden={!flipped} inert={!flipped}>{back}</div>
         </div>
+        </div>
       </div>
       <div className="badge-controls">
         <button type="button" className="badge-examine" onClick={flip}>Flip card <span aria-hidden="true">↻</span></button>
-        <button type="button" className="badge-examine" onClick={reset}>Reset view</button>
+        {/* <button type="button" className="badge-examine" onClick={reset}>Reset view</button> */}
       </div>
-      <p className="badge-gesture-hint">Drag to explore · release to let it spin</p>
     </div>
   );
 }
