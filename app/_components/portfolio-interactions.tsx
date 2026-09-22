@@ -98,7 +98,7 @@ export function ProjectCollection() {
     <>
       <div className="project-toolbar">
         <div className="filters" role="group" aria-label="Filter projects by category">
-          {categories.map((filter) => <button key={filter} aria-pressed={category === filter} onClick={() => setCategory(filter)}>{filter}</button>)}
+          {categories.map((filter) => <button key={filter} className={category === filter ? "glass" : undefined} aria-pressed={category === filter} onClick={() => setCategory(filter)}><span>{filter}</span></button>)}
         </div>
         <span className="result-count" aria-live="polite">{projects.length} {projects.length === 1 ? "project" : "projects"}</span>
       </div>
