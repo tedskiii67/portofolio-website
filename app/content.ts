@@ -222,7 +222,7 @@ export const portfolio = {
       "id": "project-1",
       "title": "Open House Fasilkom UI 2023",
       "categories": ["UI Design", "UX Research"],
-      "year": "",
+      "year": "2023",
       "summary": "Designed the Home Registration Page for Open House Fasilkom UI 2023, featuring a countdown, event details, benefits, FAQs, and contact access for a seamless attendee experience.",
       "stack": [
         "UI/UX Design",
@@ -239,7 +239,7 @@ export const portfolio = {
       "id": "project-2",
       "title": "Pemira Fasilkom UI 2023 Website",
       "categories": ["UI Design"],
-      "year": "",
+      "year": "2023",
       "summary": "Designed the Landing Page, Candidate Overview, and E-Voting pages for Pemira Fasilkom UI 2023, ensuring an intuitive experience with clear information, smooth navigation, and secure voting functionality.",
       "stack": [
         "UI/UX Design",
@@ -255,7 +255,7 @@ export const portfolio = {
       "id": "project-3",
       "title": "SIBeasiswa NG",
       "categories": ["UX Research", "UI Design"],
-      "year": "",
+      "year": "2024",
       "summary": "Designed a user-friendly scholarship website and CMS as part of open recruitment for Ristek Fasilkom Ul's Digital Product Design SIG. The platform simplifies scholarship discovery, application management, and document submission for students, while offering efficient admin tools for managing and reviewing submissions.",
       "stack": [
         "UI/UX Design",
@@ -272,7 +272,7 @@ export const portfolio = {
       "id": "project-4",
       "title": "The 47th Jazz Goes to Campus Website",
       "categories": ["UI Design"],
-      "year": "",
+      "year": "2024",
       "summary": "Designed for The 47th Jazz Goes to Campus Website, the Homepage introduces the event, the Gallery showcases photos and highlights, the About Us section tell the history of the event, and the Band Registration page offers a streamlined registration process for band contest participant.",
       "stack": [
         "UI/UX Design",
@@ -288,7 +288,7 @@ export const portfolio = {
       "id": "project-5",
       "title": "RISTEK Summer Event Website Revamp",
       "categories": ["UI Design"],
-      "year": "",
+      "year": "2024",
       "summary": "Worked on a small revamp for RISTEK Summer Event 2024 website, including adjustments to the landing page and event page for improved clarity and visual flow. Added dynamic forms to streamline the registration process, making it more seamless and interactive for participants.",
       "stack": [
         "UI/UX Design",
@@ -304,7 +304,7 @@ export const portfolio = {
       "id": "project-6",
       "title": "InteractEd: Redefining Early Education!",
       "categories": ["UX Research", "UI Design"],
-      "year": "",
+      "year": "2024",
       "summary": "My group and I designed InteractEd for HCI course final project, InteractEd is an interactive learning platform for kids aged 6–13. It uses project-based learning to help children develop skills, explore interests, and collaborate with peers in a fun and engaging way.",
       "stack": [
         "UI/UX Design",
@@ -321,7 +321,7 @@ export const portfolio = {
       "id": "project-7",
       "title": "Healthcare Mobile App",
       "categories": ["UI Design"],
-      "year": "",
+      "year": "2024",
       "summary": "Designed for an e-health application as a contract project during my time as a Digital Product Design member at Ristek Fasilkom UI, the app includes features like surveys, e-learning, document management, and consultation. It provides users with a seamless and user-friendly experience, enabling easy access to health resources and efficient interaction with healthcare providers.",
       "stack": [
         "UI/UX Design",
@@ -337,7 +337,7 @@ export const portfolio = {
       "id": "project-8",
       "title": "Football Super App",
       "categories": ["UI Design"],
-      "year": "",
+      "year": "2024",
       "summary": "Designed a football application as a contract project during my time as a Digital Product Design member at Ristek Fasilkom UI featuring news, standings, player and coach details, match results, and schedules. The app delivers a comprehensive and user-friendly experience, keeping fans informed and engaged with their favorite teams and competitions.",
       "stack": [
         "UI/UX Design",
@@ -392,7 +392,7 @@ export const portfolio = {
       "id": "project-11",
       "title": "Artera: New Hope For Digital Artist",
       "categories": ["Product Strategy"],
-      "year": "",
+      "year": "2025",
       "summary": "Artera is a digital platform developed to support and empower Indonesian illustrators and digital artists through a fair, transparent system focused on copyright protection.\nThe platform offers features for showcasing and selling artworks, global market access, fair pricing guidelines, and a supportive, educational community.",
       "stack": [
         "Digital Art",

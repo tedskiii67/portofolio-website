@@ -381,6 +381,7 @@ button svg, a svg { vertical-align: middle; }
 .project-summary { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 19px; }
 .tags span { display: inline-block; font-size: 9px; border: 1px solid rgba(255,255,255,.065); padding: 3px 8px; border-radius: 5px; background: rgba(255,255,255,.025); color: #a6aeba; }
+.project-card .tags span { font-size: 12px; line-height: 1.5; padding: 4px 9px; color: #b8bfcb; }
 
 /* Local CSS artwork: no stock images or third-party requests. */
 .visual-dashboard { background: radial-gradient(ellipse at 50% 10%, #263432, #10191b 75%); }
