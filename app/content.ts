@@ -35,7 +35,7 @@ export const portfolio = {
   "initials": "TK",
   "role": "Product Designer & Digital Builder",
   "email": "theodorekasyfillah06@gmail.com",
-  "avatar": "/Foto.png",
+  "avatar": "/Foto ceep.jpeg",
   "hero": {
     "greeting": "Hello,\nI'm Theo",
     "lineOne": "I love all things product, design, and technology.",
