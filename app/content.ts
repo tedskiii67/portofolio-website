@@ -39,7 +39,7 @@ export const portfolio = {
   "hero": {
     "greeting": "Hello,\nI'm Theo",
     "lineOne": "I love all things product, design, and technology.",
-    "lineTwo": "So I can make people's everyday lives a little better through meaningful products.",
+    "lineTwo": "",
     "description": "Hi!! I’m Theo, an Information Systems graduate with an interest in Product Management and digital product development. I enjoy connecting user needs, business goals, and technology to create experiences that actually useful for a lot of people.",
     "scrollLabel": "About Me"
   },
