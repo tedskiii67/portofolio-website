@@ -35,12 +35,12 @@ export const portfolio = {
   "initials": "TK",
   "role": "Product Designer & Digital Builder",
   "email": "theodorekasyfillah06@gmail.com",
-  "avatar": "/selpool.jpeg",
+  "avatar": "/Foto.png",
   "hero": {
     "greeting": "Hello,\nI'm Theo",
-    "lineOne": "I do design, research, and also code sometimes",
-    "lineTwo": "",
-    "description": "Hi!! I’m Theo, an Information Systems graduate. I do design, research, and also code sometimes. I enjoy connecting user needs, business goals, and technology to create experiences that actually useful for a lot of people.",
+    "lineOne": "I love all things product, design, and technology.",
+    "lineTwo": "So I can make people's everyday lives a little better through meaningful products.",
+    "description": "Hi!! I’m Theo, an Information Systems graduate with an interest in Product Management and digital product development. I enjoy connecting user needs, business goals, and technology to create experiences that actually useful for a lot of people.",
     "scrollLabel": "About Me"
   },
   "about": {
@@ -79,7 +79,7 @@ export const portfolio = {
       "initials": "XL",
       "company": "XLSMART",
       "role": "UX Designer Intern",
-      "period": "Apr 2026 – Present",
+      "period": "Apr 2026 – Oct 2026",
       "type": "Internship",
       "description": "Designing and refining customer-facing interfaces for XL PRIORITAS and XL SATU as part of ongoing product design work.",
       "highlights": [
