@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { Article, Project } from "../content";
-import { portfolio } from "../content";
+import { getCaseStudyForProject, portfolio } from "../content";
 import { Icon } from "./icon";
 import { ProjectVisual } from "./project-visual";
 import { ArticleReader } from "./article-reader";
@@ -10,12 +12,15 @@ import { ArticleReader } from "./article-reader";
 const sections = [
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
+  ...(portfolio.caseStudies.length ? [{ id: "case-studies", label: "Cases" }] : []),
   { id: "work", label: "Work" },
   ...(portfolio.showWriting && portfolio.writing.length ? [{ id: "writing", label: "Writing" }] : []),
 ];
 
 export function Navigation() {
   const [active, setActive] = useState("");
+  // On sub-pages (e.g. a case study) the section links point back to the home page.
+  const base = usePathname() === "/" ? "" : "/";
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -33,13 +38,13 @@ export function Navigation() {
   return (
     <header className="nav-wrap">
       <nav className="glass navigation" aria-label="Main navigation">
-        <a className="wordmark" href="#top" aria-label={`${portfolio.name}, back to top`}>{portfolio.initials}</a>
+        <a className="wordmark" href={base || "#top"} aria-label={`${portfolio.name}, back to top`}>{portfolio.initials}</a>
         <div className="nav-links">
           {sections.map(({ id, label }) => (
-            <a key={id} href={`#${id}`} aria-current={active === id ? "location" : undefined}>{label}</a>
+            <a key={id} href={`${base}#${id}`} aria-current={active === id ? "location" : undefined}>{label}</a>
           ))}
         </div>
-        <a className="nav-contact" href="#contact">Let’s talk <Icon name="chat" /></a>
+        <a className="nav-contact" href={`${base}#contact`}>Let’s talk <Icon name="chat" /></a>
       </nav>
     </header>
   );
@@ -62,6 +67,7 @@ function DetailDialog({ item, onClose }: { item: Project | Article | null; onClo
 
   if (!item) return null;
   const isProject = "stack" in item;
+  const caseStudy = isProject ? getCaseStudyForProject(item.id) : undefined;
 
   return (
     <dialog ref={dialogRef} className="detail-dialog" aria-labelledby={`detail-${item.id}`} onClose={(event) => { if (!event.currentTarget.open) onClose(); }} onClick={(event) => {
@@ -79,7 +85,8 @@ function DetailDialog({ item, onClose }: { item: Project | Article | null; onClo
         {(isProject ? item.details : item.body).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
         {isProject && <div className="tags">{item.stack.map((tag) => <span key={tag}>{tag}</span>)}</div>}
         <div className="dialog-links">
-          {isProject && item.liveUrl && <a className="button button-light" href={item.liveUrl} target="_blank" rel="noreferrer">See Details <Icon name="arrow" /></a>}
+          {caseStudy && <Link className="button button-light" href={`/case-studies/${caseStudy.slug}`}>Read case study <Icon name="arrow" /></Link>}
+          {isProject && !caseStudy && item.liveUrl && <a className="button button-light" href={item.liveUrl} target="_blank" rel="noreferrer">See Details <Icon name="arrow" /></a>}
           {isProject && item.sourceUrl && <a className="button button-glass" href={item.sourceUrl} target="_blank" rel="noreferrer">Source code <Icon name="code" /></a>}
           {!isProject && item.url && <a className="button button-light" href={item.url} target="_blank" rel="noreferrer">Read original <Icon name="arrow" /></a>}
         </div>
@@ -107,7 +114,7 @@ export function ProjectCollection() {
           <button className="glass project-card" key={project.id} onClick={() => setSelected(project)} aria-label={`View ${project.title} project`}>
             <ProjectVisual project={project} />
             <div className="project-copy">
-              <div className="project-category"><span>{project.categories.join(" · ")}</span><span>{project.year}</span></div>
+              <div className="project-category"><span>{project.categories.join(" · ")}{getCaseStudyForProject(project.id) && <em className="case-badge">Case study</em>}</span><span>{project.year}</span></div>
               <div className="project-title"><h3>{project.title}</h3></div>
               <p className="project-summary">{project.summary}</p>
               <span className="project-read-more">Read more <Icon name="arrow" /></span>

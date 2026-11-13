@@ -5,6 +5,8 @@ import { IridescentLight } from "./_components/iridescent-light";
 import { ArticleCollection, Navigation, ProjectCollection } from "./_components/portfolio-interactions";
 import { SkillsCarousel } from "./_components/skills-carousel";
 import { HangingBadge } from "./_components/hanging-badge";
+import { CaseStudyCarousel } from "./_components/case-study-carousel";
+import { SiteFooter } from "./_components/site-footer";
 
 function SectionHeading({ title, description }: { title: string; description: string }) {
   return (
@@ -174,6 +176,18 @@ export default function Home() {
           </div>
         </section>
 
+        {portfolio.caseStudies.length > 0 && (
+          <section className="section-space case-section-home" id="case-studies" aria-labelledby="case-studies-title">
+            <div className="case-heading">
+              <div className="section-heading">
+                <h2 id="case-studies-title">Case Studies</h2>
+                <p>A closer look at how a few projects came together, from first question to final screen.</p>
+              </div>
+            </div>
+            <CaseStudyCarousel />
+          </section>
+        )}
+
         <section className="section-space work-section" id="work" aria-label="Selected work">
           <SectionHeading title="Highlighted Works" description="" />
           <ProjectCollection />
@@ -199,13 +213,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer site-shell">
-        <a className="footer-brand" href="#top">{portfolio.initials}<span>© {new Date().getFullYear()} {portfolio.name}</span></a>
-        <div className="footer-links">
-          {portfolio.socials.map((social) => <a key={social.label} href={social.href} target="_blank" rel="noreferrer">{social.label}<Icon name="arrow" /></a>)}
-          <a href="#top">Back to top <Icon name="down" className="back-arrow" /></a>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
