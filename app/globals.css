@@ -1139,3 +1139,7 @@ button svg, a svg { vertical-align: middle; }
   .case-others-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .case-other strong { font-size: 22px; }
 }
+
+/* Case Studies heading on the home page is centered, like the Skills heading. */
+.case-section-home .case-heading { justify-content: center; align-items: center; text-align: center; }
+.case-section-home .section-heading > p { margin-inline: auto; }

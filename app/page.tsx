@@ -180,9 +180,7 @@ export default function Home() {
           <section className="section-space case-section-home" id="case-studies" aria-labelledby="case-studies-title">
             <div className="case-heading">
               <div className="section-heading">
-                <h2 id="case-studies-title">Case Studies</h2>
-                <p>A closer look at how a few projects came together, from first question to final screen.</p>
-              </div>
+                <h2 id="case-studies-title">Case Studies</h2>              </div>
             </div>
             <CaseStudyCarousel />
           </section>
